@@ -12,10 +12,10 @@ part 'locker_api_response_model.freezed.dart';
 @freezed
 class ApiResponseModel with _$ApiResponseModel {
   const factory ApiResponseModel({
-    required List<ProfileModel> profiles,
+    required List<ProfileModel> profile,
     required List<PostModel> posts,
     required List<CommentModel> comments,
-    required List<LockModel> locks,
+    @JsonKey(name: 'lockers') required List<LockModel> locks,
   }) = _ApiResponseModel;
 
   factory ApiResponseModel.fromJson(Map<String, Object?> json) =>

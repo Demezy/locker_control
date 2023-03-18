@@ -9,7 +9,7 @@ class LockModel with _$LockModel {
     required int id,
     required String code,
     required String title,
-    required bool isLock,
+    @JsonKey(name: 'is_lock') required bool isLock,
   }) = _LockModel;
 
   factory LockModel.fromJson(Map<String, Object?> json) =>
