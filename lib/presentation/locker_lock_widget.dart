@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config/utils/string_to_color_extension.dart';
+import '../data/locker_locks_provider.dart';
 import '../domain/locker_lock_model.dart';
 
-class LockWidget extends HookWidget {
+class LockWidget extends ConsumerWidget {
   final LockModel lock;
   const LockWidget({required this.lock, super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final baseColor = lock.title.toColor();
+  Widget build(BuildContext context, WidgetRef ref) {
     final baseColor =
         lock.isLock ? const Color(0xff2A6155) : const Color(0xffC7772E);
+    final lockRepository = ref.watch(lockerRepositoryProvider);
     return Card(
       color: const Color(0xfff7faf9),
       child: Padding(
@@ -66,7 +66,9 @@ class LockWidget extends HookWidget {
             CupertinoSwitch(
               value: lock.isLock,
               activeColor: baseColor,
-              onChanged: (state) {},
+              onChanged: (state) {
+                lockRepository.toggleLockStateById(lock.id, state);
+              },
             ),
           ],
         ),
