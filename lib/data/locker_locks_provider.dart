@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'locker_locks_repository.dart';
+import 'package:locker_control/data/locker_locks_repository.dart';
 
 final lockerRepositoryProvider =
     StateProvider<LockerRepository>((ref) => LockerRepository());

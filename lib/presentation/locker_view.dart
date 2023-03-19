@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../data/locker_locks_provider.dart';
-import '../domain/locker_lock_model.dart';
-import 'locker_lock_widget.dart';
+import 'package:locker_control/data/locker_locks_provider.dart';
+import 'package:locker_control/presentation/locker_lock_widget.dart';
 
 class LockerView extends ConsumerWidget {
-  const LockerView({super.key, required this.title});
+  const LockerView({required this.title, super.key});
 
   final String title;
 
@@ -46,13 +44,13 @@ class LockerView extends ConsumerWidget {
               ],
             ),
             locksState.when(
-              error: (Object error, StackTrace stackTrace) {
+              error: (error, stackTrace) {
                 return const Text('Something went wrong :(');
               },
               loading: () {
                 return const CircularProgressIndicator();
               },
-              data: (List<LockModel> locks) {
+              data: (locks) {
                 return Expanded(
                   child: ListView.separated(
                     itemCount: locks.length + 1,
@@ -61,22 +59,29 @@ class LockerView extends ConsumerWidget {
                     ),
                     itemBuilder: (context, index) => locks.length > index
                         ? LockWidget(lock: locks[index])
-                        : Align(
-                            alignment: Alignment.centerLeft,
-                            child: ElevatedButton(
-                              // TODO: move color to colorscheme
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xff2a6155),
-                                padding: const EdgeInsets.all(20),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(14),
+                        : Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: ElevatedButton(
+                                  // TODO: move color to colorscheme
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xff2a6155),
+                                    padding: const EdgeInsets.all(20),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(14),
+                                      ),
+                                    ),
                                   ),
+                                  onPressed: () {},
+                                  child: const Text('+ Add locker'),
                                 ),
                               ),
-                              onPressed: () {},
-                              child: const Text('+ Add locker'),
-                            ),
+                              const SizedBox(
+                                height: 24,
+                              ),
+                            ],
                           ),
                   ),
                 );

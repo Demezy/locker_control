@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
-import 'presentation/locker_view.dart';
+import 'package:locker_control/presentation/locker_view.dart';
 
 void setupGetIt() {
   GetIt.I.registerSingleton<Dio>(Dio());
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         ),
         body: Container(
           color: const Color(0xfff1f6f4),
-          child: LockerView(title: 'Flutter Demo Home Page'),
+          child: const LockerView(title: 'Flutter Demo Home Page'),
         ),
       ),
     );

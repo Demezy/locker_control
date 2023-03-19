@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'locker_comments_model.dart';
-import 'locker_lock_model.dart';
-import 'locker_posts_model.dart';
-import 'locker_profile_model.dart';
+import 'package:locker_control/domain/locker_comments_model.dart';
+import 'package:locker_control/domain/locker_lock_model.dart';
+import 'package:locker_control/domain/locker_posts_model.dart';
+import 'package:locker_control/domain/locker_profile_model.dart';
 
 part 'locker_api_response_model.g.dart';
 part 'locker_api_response_model.freezed.dart';

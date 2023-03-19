@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../data/locker_locks_provider.dart';
-import '../domain/locker_lock_model.dart';
+import 'package:locker_control/data/locker_locks_provider.dart';
+import 'package:locker_control/domain/locker_lock_model.dart';
 
 class LockWidget extends ConsumerWidget {
-  final LockModel lock;
   const LockWidget({required this.lock, super.key});
+  final LockModel lock;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,7 +36,9 @@ class LockWidget extends ConsumerWidget {
                 Text(
                   lock.title,
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text('id: ${lock.id}'),
                 Padding(
@@ -67,7 +69,10 @@ class LockWidget extends ConsumerWidget {
               value: lock.isLock,
               activeColor: baseColor,
               onChanged: (state) {
-                lockRepository.toggleLockStateById(lock.id, state);
+                lockRepository.toggleLockStateById(
+                  lockId: lock.id,
+                  state: state,
+                );
               },
             ),
           ],
