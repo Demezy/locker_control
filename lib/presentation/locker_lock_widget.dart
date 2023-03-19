@@ -12,6 +12,8 @@ class LockWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final baseColor = lock.title.toColor();
+    final baseColor =
+        lock.isLock ? const Color(0xff2A6155) : const Color(0xffC7772E);
     return Card(
       color: const Color(0xfff7faf9),
       child: Padding(
@@ -21,8 +23,8 @@ class LockWidget extends HookWidget {
             CircleAvatar(
               radius: 30,
               backgroundColor: baseColor,
-              child: const Icon(
-                CupertinoIcons.lock_open,
+              child: Icon(
+                lock.isLock ? CupertinoIcons.lock : CupertinoIcons.lock_open,
                 color: Colors.white,
               ),
             ),
